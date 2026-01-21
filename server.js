@@ -49,7 +49,8 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', async (data) => {
     try {
       const { number, message } = data;
-      const chatId = number.includes('@c.us') ? number : `${number}@c.us`;
+      // Handle both regular chats (@c.us) and group chats (@g.us)
+      const chatId = number.includes('@') ? number : `${number}@c.us`;
       await client.sendMessage(chatId, message);
       socket.emit('messageSent', { success: true, number, message });
     } catch (error) {

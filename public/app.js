@@ -155,7 +155,8 @@ function displayChats(chats) {
     document.querySelectorAll('.chat-item').forEach(item => {
         item.addEventListener('click', () => {
             const chatId = item.dataset.chatId;
-            phoneNumber.value = chatId.replace('@c.us', '').replace('@g.us', '');
+            // Remove both @c.us and @g.us suffixes
+            phoneNumber.value = chatId.replace(/@c\.us$/, '').replace(/@g\.us$/, '');
         });
     });
 }

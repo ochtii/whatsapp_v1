@@ -85,6 +85,17 @@ Umgebungsvariablen können verwendet werden:
 PORT=3000 npm start
 ```
 
+**Für Produktionsumgebungen** sollten Sie CORS einschränken. Bearbeiten Sie `server.js`:
+
+```javascript
+const io = socketIO(server, {
+  cors: {
+    origin: "https://ihr-username.github.io", // Ihre GitHub Pages URL
+    methods: ["GET", "POST"]
+  }
+});
+```
+
 ### Frontend
 
 Die Server-URL kann direkt im Web-Interface konfiguriert werden. Standard ist `http://localhost:3000`.
